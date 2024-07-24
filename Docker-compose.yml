@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: home_inventory_web
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=minimalist
+      - DB_USER=demo
+      - DB_PASSWORD=demo
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13
+    container_name: home_inventory_db
+    environment:
+      POSTGRES_USER: "demo"
+      POSTGRES_PASSWORD: "demo"
+      POSTGRES_DB: "home_inventory"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
