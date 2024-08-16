@@ -7,9 +7,9 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - DB_HOST=db
+      - DB_HOST=localhost
       - DB_PORT=5432
-      - DB_NAME=minimalist
+      - DB_NAME=home_inventory
       - DB_USER=demo
       - DB_PASSWORD=demo
     depends_on:
@@ -22,6 +22,8 @@ services:
       POSTGRES_USER: "demo"
       POSTGRES_PASSWORD: "demo"
       POSTGRES_DB: "home_inventory"
+    ports:
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
